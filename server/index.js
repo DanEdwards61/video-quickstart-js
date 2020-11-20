@@ -85,6 +85,19 @@ app.get('/token', function(request, response) {
   response.send(token.toJwt());
 });
 
+app.get('/proxy', function(request, response) {
+  const proxyData = {
+    wsServer: process.env.SIGNALING_URL,       
+    wsServerInsights: process.env.INSIGHTS_URL, 
+    iceServers = [
+      { urls: process.env.TURN_URL1, username: process.env.TURN_USER1, credential: TURN_PWD1 },
+      { urls: process.env.TURN_URL2, username: process.env.TURN_USER2, credential: TURN_PWD2 },
+    ]
+  };
+
+  response.send(proxyData);
+})
+
 // Create http server and run it.
 const server = http.createServer(app);
 const port = process.env.PORT || 3000;
