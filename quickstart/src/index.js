@@ -103,7 +103,7 @@ async function selectAndJoinRoom(error = null) {
 
     // Get proxy URL's & TURN info from the server
     response = await fetch('/proxy');
-    proxy = response.text();
+    const proxy = response.text();
 
     connectOptions.wsServer = proxy.wsServer;
     connectOptions.wsServerInsights = proxy.wsServerInsights;
