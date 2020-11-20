@@ -89,7 +89,7 @@ app.get('/proxy', function(request, response) {
   const proxyData = {
     wsServer: process.env.SIGNALING_URL,       
     wsServerInsights: process.env.INSIGHTS_URL, 
-    iceServers = [
+    iceServers: [
       { urls: process.env.TURN_URL1, username: process.env.TURN_USER1, credential: TURN_PWD1 },
       { urls: process.env.TURN_URL2, username: process.env.TURN_USER2, credential: TURN_PWD2 },
     ]
