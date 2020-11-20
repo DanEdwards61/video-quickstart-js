@@ -102,7 +102,9 @@ async function selectAndJoinRoom(error = null) {
     connectOptions.video.deviceId = { exact: deviceIds.video };
 
     // Get proxy URL's & TURN info from the server
-    const proxy = await fetch('/proxy');
+    response = await fetch('/proxy');
+    proxy = response.text();
+    
     connectOptions.wsServer = proxy.wsServer;
     connectOptions.wsServerInsights = proxy.wsServerInsights;
     connectOptions.iceServers = proxy.iceServers;
