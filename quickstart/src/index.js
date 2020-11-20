@@ -87,7 +87,7 @@ async function selectAndJoinRoom(error = null) {
 
   try {
     // Fetch an AccessToken to join the Room.
-    const response = await fetch(`/token?identity=${identity}`);
+    let response = await fetch(`/token?identity=${identity}`);
 
     // Extract the AccessToken from the Response.
     const token = await response.text();
@@ -104,7 +104,7 @@ async function selectAndJoinRoom(error = null) {
     // Get proxy URL's & TURN info from the server
     response = await fetch('/proxy');
     proxy = response.text();
-    
+
     connectOptions.wsServer = proxy.wsServer;
     connectOptions.wsServerInsights = proxy.wsServerInsights;
     connectOptions.iceServers = proxy.iceServers;
