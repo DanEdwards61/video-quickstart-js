@@ -105,9 +105,17 @@ async function selectAndJoinRoom(error = null) {
     response = await fetch('/proxy');
     const proxy = JSON.parse(await response.text());
 
-    connectOptions.wsServer = proxy.wsServer;
-    connectOptions.wsServerInsights = proxy.wsServerInsights;
-    connectOptions.iceServers = proxy.iceServers;
+    if (proxy.wsServer) {
+      connectOptions.wsServer = proxy.wsServer;
+    }
+
+    if (proxy.wsServerInsights) {
+      connectOptions.wsServerInsights = proxy.wsServerInsights;
+    }
+
+    if (proxy.iceServers) {
+      connectOptions.iceServers = proxy.iceServers;
+    }
 
     // Join the Room.
     await joinRoom(token, connectOptions);
